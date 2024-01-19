@@ -27,6 +27,9 @@ jobs:
             ~/.cargo/git/db/
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          
+      - name: Run Clippy
+        run: cargo clippy -- -D warnings
 
       - name: Build
         run: cargo build --verbose
