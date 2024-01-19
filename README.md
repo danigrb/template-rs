@@ -8,4 +8,4 @@ Topics to write about:
 
 - Tarpaulin/Kcov
 - Codecov + github actions + badge
-- 
+- Build and test on PR
