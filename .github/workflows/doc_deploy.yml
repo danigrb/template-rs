@@ -25,7 +25,8 @@ jobs:
         uses: peaceiris/actions-mdbook@v1
         with:
           mdbook-version: '0.4.8'
-      
+      - name: Create mdBook Source Directory
+        run: mkdir -p book/src/
       - name: Copy Rustdocs to mdBook Source
         run: cp -r ./target/doc/ ./book/src/
 
