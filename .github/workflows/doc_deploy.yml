@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v3
 
@@ -19,17 +17,17 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
-          
+
+      - name: Generate Rust Documentation
+        run: cargo doc --no-deps
+
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
           mdbook-version: '0.4.8'
-
-      - name: Generate Rust Documentation
-        run: cargo doc --no-deps
       
       - name: Copy Rustdocs to mdBook Source
-        run: cp -r target/doc book/src/
+        run: cp -r ./target/doc/ ./book/src/
 
       - run: mdbook build
 
@@ -38,4 +36,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
-          publish_dir: ./book/html
+          publish_dir: ./book/html/
