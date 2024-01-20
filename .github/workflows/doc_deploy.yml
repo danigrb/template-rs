@@ -4,28 +4,38 @@ on:
   push:
     branches: ["main"]
 jobs:
-  build_and_deploy:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: 'Checkout'
-        uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
         with:
-          components: rustfmt, rust-src
+          toolchain: stable
+          profile: minimal
+          override: true
+          
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: '0.4.8'
 
-      - name: Build Documentation
-        run: cargo doc --workspace --no-deps
-        env:
-          RUSTDOCFLAGS: -D warnings
+      - name: Generate Rust Documentation
+        run: cargo doc --no-deps
+      
+      - name: Copy Rustdocs to mdBook Source
+        run: cp -r target/doc book/src/
 
-      - name: Copy Rust Documentation to Zola
-        run: cp -R "target/doc/" "docs/website/static/rustdocs/"
+      - run: mdbook build
 
-      - name: 'Build and deploy'
-        uses: shalzz/zola-deploy-action@master
-        env:
-          PAGES_BRANCH: gh-pages
-          BUILD_DIR: docs/website/
-          TOKEN: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
+          publish_dir: ./book/html
