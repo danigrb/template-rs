@@ -32,14 +32,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Generate Documentation
-        run: cargo doc --no-deps
+        run:  cargo doc --no-deps
+              rm -rf ./docs
+              echo "<meta http-equiv=\"refresh\" content=\"0; url=template-rs\">" > target/doc/index.html
+              cp -r target/doc ./docs
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './target/doc'
+          path: './docs'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
