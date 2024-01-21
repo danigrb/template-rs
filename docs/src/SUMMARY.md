@@ -1,3 +1,5 @@
-# Summary
+# Table of Contents
 
-- [Chapter 1](./chapter_1.md)
+- [Introduction](chapters/introduction.md)
+- [Getting Started](chapters/getting-started.md)
+- [Advanced Usage](chapters/advanced-usage.md)

@@ -21,6 +21,12 @@ jobs:
           mkdir mdbook
           curl -sSL $url | tar -xz --directory=./mdbook
           echo `pwd`/mdbook >> $GITHUB_PATH
+      - name: Create Docs
+        run: |
+          cargo doc --no-deps
+      - name: Move Docs
+        run: |
+          cp -r target/doc docs/book
       - name: Build Book
         run: |
           cd docs
