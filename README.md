@@ -8,7 +8,7 @@ This repository serves as a template for Rust projects, streamlining the setup p
 
 ## Getting Started with the Template
 
-To use this template for your project, simply clone or fork the repository. After obtaining a copy, replace all instances of "template-rs" in the project files with your project's name. This can be done efficiently using a tool like Visual Studio Code's 'Replace All' feature.
+To use this template for your project, simply clone or fork the repository. You can reference it in the "template" section when creating a repository as well. After obtaining a copy, replace all instances of "template-rs" in the project files with your project's name. This can be done efficiently using a tool like Visual Studio Code's 'Replace All' feature.
 
 ## Tarpaulin for Test Coverage
 
@@ -71,8 +71,38 @@ To add a Codecov badge to your README:
 2. Copy the Markdown code for the badge.
 3. Paste it at the top of your `README.md` file.
 
+# Project Roadmap
+
+This roadmap outlines the current and planned features. Checked items represent features that are already implemented.
+
+## Current Features
+
+- [x] **Tarpaulin for Test Coverage**: Integration of Tarpaulin for assessing test effectiveness.
+- [x] **GitHub Actions for CI**: Setup for continuous integration, building, and testing on pull requests.
+- [x] **Codecov Integration**: Code coverage reporting and badge in README.
+
+- [ ] **Deployment to Cloud Environments**: Automate deployment to cloud platforms like AWS, GCP, or Azure.
+- [ ] **Docker Container Support**: Add support for containerizing the application with Docker.
+- [ ] **Enhanced Code Quality Checks**: Integration of additional linters and formatters.
+- [ ] **Multi-Platform Testing**: Extend GitHub Actions to test on multiple platforms (Linux, Windows, macOS).
+- [ ] **Performance Benchmarking**: Implement performance benchmark tests.
+- [ ] **Advanced Tarpaulin Configurations**: Explore advanced features and configurations of Tarpaulin.
+- [ ] **Database Integration Examples**: Provide examples for integrating common databases.
+- [ ] **Microservice Architecture Support**: Templates and guidelines for building microservices.
+
+## Long-Term Goals
+
+- [ ] **Community Contributions**: Encourage and facilitate contributions from the Rust community.
+- [ ] **Comprehensive Documentation**: Develop in-depth documentation and tutorials.
+- [ ] **Plugin Ecosystem**: Establish a system for third-party plugins or extensions.
+
+---
+
+This roadmap is subject to change and will be updated as the project evolves. Your contributions and suggestions are always welcome!
+
 ## Disclaimer
 
 This Rust project template is made for educational purposes.
 
-If you have any suggestions or tips on what should be added, please feel free to reach out info@danielegarbagnati.com .
+If you have any suggestions or tips on what should be added, please feel free to reach out.
+
